@@ -1,32 +1,30 @@
 let express = require('express');
-let http = require('http');
-let socketio = require('socket.io');
+let socket = require('socket.io');
 
+// create express app
 let app = express();
-let server = http.createServer(app);
 
-// socket setup with CORS
-let io = socketio(server, {
-  cors: {
-    origin: "*",  // allow all origins (for testing, can restrict later)
-    methods: ["GET", "POST"]
-  }
-});
+// static files (public folder)
+app.use(express.static('public'));
 
-// static files
-app.use(express.static('./public'));
-
-// port
+// listen on Render's PORT or fallback 4500
 let PORT = process.env.PORT || 4500;
-server.listen(PORT, () => {
-  console.log("Server is running on port " + PORT);
+let server = app.listen(PORT, () => {
+    console.log("Server is running on port " + PORT);
 });
 
-// socket
-io.on('connection', (socket) => {
-  console.log("New user connected");
+// socket setup
+let io = socket(server);
 
-  socket.on('chat', (data) => {
-    io.sockets.emit('chat', data);
-  });
+io.on('connection', (socket) => { 
+    console.log("New user connected");
+
+    socket.on('chat', (data) => {
+        io.sockets.emit('chat', data); 
+    });
+
+    socket.on('disconnect', () => {
+        console.log("User disconnected");
+    });
 });
+ 
