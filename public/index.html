@@ -3,13 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Websocket</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-       const socket = io(); // will auto connect to the same domain
-    </script>
-
-
+    <title>Websocket</title> 
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body> 
@@ -22,6 +16,11 @@
          <input id="messageInput" type="text" placeholder="Type your message here..." autocomplete="off" />
          <button id="sendButton">Send</button> 
       </div> 
+     <script src="/socket.io/socket.io.js"></script>
+    <script>
+       const socket = io(); // will auto connect to the same domain
+    </script>
     <script src="/app.js"></script>
+    
   </body>
 </html>
