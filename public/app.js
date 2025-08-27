@@ -1,4 +1,4 @@
-let socket = io.connect('http://localhost:4500');
+let socket = io();
 
 let output = document.getElementById('messages');
 let handle = document.getElementById('handle');
