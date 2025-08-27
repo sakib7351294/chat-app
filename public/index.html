@@ -5,9 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Websocket</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-       const socket = io(); // will auto connect to the same domain
-    </script>
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  // Always connect dynamically to the same host
+  const socket = io({
+    transports: ["websocket", "polling"], // fallback support
+    reconnection: true,
+    reconnectionAttempts: 5,  // retry 5 times
+    reconnectionDelay: 1000   // wait 1s between retries
+  });
+
+  socket.on("connect", () => {
+    console.log("✅ Connected:", socket.id);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("❌ Disconnected, will try to reconnect...");
+  });
+
+  socket.on("chat", (data) => {
+    console.log("💬 New chat:", data);
+  });
+</script>
+
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body> 
