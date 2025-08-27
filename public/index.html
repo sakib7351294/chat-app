@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websocket</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body> 
+      <div id="chat">
+         <h1 style="text-align: center;">Chat Box</h1>
+        <div id="chat-window">
+          <div id="messages"></div>
+        </div>
+         <input id="handle" type="text" placeholder="Handle" autocomplete="off" />
+         <input id="messageInput" type="text" placeholder="Type your message here..." autocomplete="off" />
+         <button id="sendButton">Send</button> 
+      </div> 
+    <script src="/app.js"></script>
+  </body>
+</html>
